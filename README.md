@@ -4,6 +4,45 @@
 [![License MIT](https://img.shields.io/badge/license-MIT-blue.svg)](https://raw.githubusercontent.com/danielgatis/go-logrus-adapters/master/LICENSE)
 [![Go Doc](https://img.shields.io/badge/godoc-reference-blue.svg?style=flat-square)](https://godoc.org/github.com/danielgatis/go-logrus-adapters)
 
+A collection of adapters for logrus pkg.
+
+## Install
+
+```bash
+go get -u github.com/danielgatis/go-logrus-adapters
+```
+
+And then import the package in your code:
+
+```go
+import "github.com/danielgatis/go-logrus-adapters"
+```
+
+### Example
+
+```go
+package main
+
+import (
+	"net/http"
+
+	adapters "github.com/danielgatis/go-logrus-adapters"
+	"github.com/labstack/echo/v4"
+	"github.com/sirupsen/logrus"
+)
+
+func main() {
+	e := echo.New()
+	e.Logger = adapters.NewEchoLogAdapter(logrus.StandardLogger())
+
+	e.GET("/", func(c echo.Context) error {
+		return c.String(http.StatusOK, "Hello, World!\n")
+	})
+
+	e.Logger.Fatal(e.Start(":1323"))
+}
+```
+
 ### License
 
 Copyright (c) 2021-present [Daniel Gatis](https://github.com/danielgatis)
