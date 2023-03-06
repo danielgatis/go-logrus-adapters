@@ -5,7 +5,7 @@ go 1.17
 require (
 	github.com/dgraph-io/badger/v3 v3.2103.2
 	github.com/hashicorp/go-hclog v1.0.0
-	github.com/labstack/echo/v4 v4.6.1
+	github.com/labstack/echo/v4 v4.9.0
 	github.com/labstack/gommon v0.3.1
 	github.com/robfig/cron/v3 v3.0.1
 	github.com/sirupsen/logrus v1.8.1
