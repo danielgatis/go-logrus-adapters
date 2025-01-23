@@ -31,7 +31,7 @@ require (
 	github.com/valyala/fasttemplate v1.2.1 // indirect
 	go.opencensus.io v0.23.0 // indirect
 	golang.org/x/crypto v0.31.0 // indirect
-	golang.org/x/net v0.21.0 // indirect
+	golang.org/x/net v0.33.0 // indirect
 	golang.org/x/sys v0.28.0 // indirect
 	golang.org/x/text v0.21.0 // indirect
 	google.golang.org/protobuf v1.27.1 // indirect
