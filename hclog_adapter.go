@@ -194,3 +194,28 @@ func (adapter *HCLogAdapter) Fatal(err error) {
 	adapter.Error(fmt.Sprintf("%v", err))
 	os.Exit(1)
 }
+
+func (adapter *HCLogAdapter) GetLevel() hclog.Level {
+	logrusToHCL := map[logrus.Level]hclog.Level{
+		logrus.PanicLevel: hclog.Error,
+		logrus.FatalLevel: hclog.Error,
+		logrus.ErrorLevel: hclog.Error,
+		logrus.WarnLevel:  hclog.Warn,
+		logrus.InfoLevel:  hclog.Info,
+		logrus.DebugLevel: hclog.Debug,
+		logrus.TraceLevel: hclog.Trace,
+	}
+
+	// Get the current logrus level from the adapter
+	if logger, ok := adapter.log.(*logrus.Logger); ok {
+		currentLogrusLevel := logger.GetLevel()
+
+		// Convert and return the hclog level
+		if hclogLevel, ok := logrusToHCL[currentLogrusLevel]; ok {
+			return hclogLevel
+		}
+	}
+
+	// Default to hclog.NoLevel if the level is unrecognized
+	return hclog.NoLevel
+}
